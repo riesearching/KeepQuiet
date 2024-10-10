@@ -1,0 +1,1 @@
+<script src="https://emgithub.com/embed-v2.js?target=https%3A%2F%2Fgithub.com%2Fsnakeying%2Fflux-api-worker%2Fblob%2Fmain%2Fdocs%2FREADME.zh-hant.md&style=default&type=markdown&showLineNumbers=on&showCopy=on"></script>
