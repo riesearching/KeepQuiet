@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>文字批量處理工具</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 40px;
+            background-color: #f5f5f5;
+        }
+        textarea, pre {
+            width: 100%;
+            box-sizing: border-box;
+            margin-bottom: 20px;
+        }
+        textarea {
+            height: 150px;
+            font-size: 16px;
+            padding: 10px;
+        }
+        pre {
+            background-color: #eee;
+            padding: 15px;
+            border-radius: 5px;
+            overflow-x: auto;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>文字批量處理工具</h1>
+    <p>請輸入帳號資料，每行格式為：<code>账号----密码----sess----refresh_token</code></p>
+    <textarea id="inputText" placeholder="輸入資料..."></textarea>
+    <button onclick="processText()">處理</button>
+    <button onclick="copyToClipboard()">複製結果</button>
+
+    <h2>輸出結果 (可複製)：</h2>
+    <pre id="outputText"></pre>
+
+    <script>
+        function processText() {
+            const input = document.getElementById("inputText").value.trim();
+            const lines = input.split("\n");
+            let output = "";
+
+            lines.forEach(line => {
+                const [account, password, sess, refreshToken] = line.split("----").map(v => v.trim());
+                output += `帳號:\`${account}\`----密碼:\`${password}\`----Session:\`${sess}\`----RefreshToken:\`${refreshToken}\`\n`;
+            });
+
+            document.getElementById("outputText").textContent = output;
+        }
+
+        function copyToClipboard() {
+            const outputText = document.getElementById("outputText").textContent;
+            navigator.clipboard.writeText(outputText).then(() => {
+                alert("結果已複製到剪貼簿！");
+            }).catch(err => {
+                alert("複製失敗，請手動複製。");
+                console.error("複製錯誤: ", err);
+            });
+        }
+    </script>
+
+</body>
+</html>
