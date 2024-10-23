@@ -57,10 +57,17 @@
             const input = document.getElementById("inputText").value.trim();
             const lines = input.split("\n");
             let output = "";
+            let groupCount = 0;
 
-            lines.forEach(line => {
+            lines.forEach((line, index) => {
                 const [account, password, sess, refreshToken] = line.split("----").map(v => v.trim());
-                output += `**帳號:** \`${account}\` **密碼:** \`${password}\` **Session:** \`${sess}\` **RefreshToken:** \`${refreshToken}\` \n\n\n\n`;
+                output += `**帳號:** \`${account}\` **密碼:** \`${password}\` **Session:** \`${sess}\` **RefreshToken:** \`${refreshToken}\` \n\n`;
+                groupCount++;
+
+                if (groupCount === 10) {
+                    output += "\n\n";
+                    groupCount = 0;
+                }
             });
 
             document.getElementById("outputText").textContent = output;
