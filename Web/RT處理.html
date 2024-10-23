@@ -60,7 +60,7 @@
 
             lines.forEach(line => {
                 const [account, password, sess, refreshToken] = line.split("----").map(v => v.trim());
-                output += `帳號:\`${account}\`----密碼:\`${password}\`----Session:\`${sess}\`----RefreshToken:\`${refreshToken}\`\n`;
+                output += `**帳號:** \`${account}\` **密碼:** \`${password}\` **Session:** \`${sess}\` **RefreshToken:** \`${refreshToken}\` \n\n\n\n`;
             });
 
             document.getElementById("outputText").textContent = output;
