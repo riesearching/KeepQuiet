@@ -30,7 +30,7 @@
             border-bottom: none;
             margin: 0 5px;
             border-radius: 8px 8px 0 0;
-            font-size: 16px;
+            font-size: 18px; /* 調整字體大小 */
             cursor: pointer;
             transition: background-color 0.4s ease, color 0.4s ease, box-shadow 0.4s ease;
         }
@@ -47,7 +47,7 @@
             box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
         }
 
-        /* NextChat 標籤的顏色介於 #e7f8ff 和 #B0E0E6 之間 */
+        /* NextChat 標籤的顏色 */
         .tab.nextchat {
             background-color: #cceeff;
         }
@@ -98,12 +98,12 @@
         /* 針對小屏幕設備的樣式 */
         @media (max-width: 600px) {
             .tab {
-                font-size: 14px;
-                padding: 12px 20px;
+                font-size: 16px; /* 增大字體 */
+                padding: 15px 25px; /* 增大 padding，增加點擊區域 */
             }
 
             iframe {
-                height: 400px;
+                height: 500px; /* 提升 iframe 高度 */
             }
         }
     </style>
