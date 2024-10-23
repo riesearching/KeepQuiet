@@ -45,7 +45,7 @@
     </div>
 
     <!-- 用來顯示網頁的 iframe -->
-    <iframe id="iframe" src="https://www.example.com"></iframe>
+    <iframe id="iframe" src="https://app.nextchat.dev"></iframe>
 
     <script>
         // 切換標籤頁並加載不同的網頁
