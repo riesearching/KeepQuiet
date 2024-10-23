@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="zh-HK">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat AI</title>
+    <style>
+        /* 標籤頁的樣式 */
+        .tabs {
+            display: flex;
+            cursor: pointer;
+            margin-bottom: 10px;
+        }
+
+        .tab {
+            padding: 10px 20px;
+            border: 1px solid #ccc;
+            border-bottom: none;
+            background-color: #f1f1f1;
+        }
+
+        .tab.active {
+            background-color: white;
+            font-weight: bold;
+            border-bottom: 1px solid white;
+        }
+
+        /* iframe 的樣式 */
+        iframe {
+            width: 100%;
+            height: 500px;
+            border: 1px solid #ccc;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>AI Chat</h1>
+
+    <!-- 標籤頁 -->
+    <div class="tabs">
+        <div class="tab active" onclick="openPage('https://app.nextchat.dev')">NextChat</div>
+        <div class="tab" onclick="openPage('https://www.wikipedia.org')">網頁 2</div>
+        <div class="tab" onclick="openPage('https://www.github.com')">網頁 3</div>
+    </div>
+
+    <!-- 用來顯示網頁的 iframe -->
+    <iframe id="iframe" src="https://www.example.com"></iframe>
+
+    <script>
+        // 切換標籤頁並加載不同的網頁
+        function openPage(url) {
+            // 更新 iframe 的 src
+            document.getElementById('iframe').src = url;
+
+            // 移除所有標籤頁的 active 狀態
+            const tabs = document.querySelectorAll('.tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+
+            // 為點擊的標籤頁添加 active 狀態
+            event.target.classList.add('active');
+        }
+    </script>
+
+</body>
+</html>
