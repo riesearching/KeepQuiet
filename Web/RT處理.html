@@ -47,36 +47,46 @@
     <p>請輸入帳號資料，每行格式為：<code>账号----密码----sess----refresh_token</code></p>
     <textarea id="inputText" placeholder="輸入資料..."></textarea>
     <button onclick="processText()">處理</button>
-    <button onclick="copyToClipboard()">複製結果</button>
 
     <h2>輸出結果 (可複製)：</h2>
     <pre id="outputText"></pre>
+    <button onclick="copyOutput()">複製輸出結果</button>
+    
+    <h2>所有 Refresh Tokens (可複製)：</h2>
+    <pre id="refreshTokensOutput"></pre>
+    <button onclick="copyRefreshTokens()">複製所有 Refresh Tokens</button>
 
     <script>
         function processText() {
             const input = document.getElementById("inputText").value.trim();
             const lines = input.split("\n");
             let output = "";
-            let groupCount = 0;
+            let refreshTokens = [];
 
-            lines.forEach((line, index) => {
+            lines.forEach((line) => {
                 const [account, password, sess, refreshToken] = line.split("----").map(v => v.trim());
                 output += `**帳號:** \`${account}\` **密碼:** \`${password}\` **Session:** \`${sess}\` **RefreshToken:** \`${refreshToken}\` \n\n`;
-                groupCount++;
-
-                if (groupCount === 10) {
-                    output += "\n\n";
-                    groupCount = 0;
-                }
+                refreshTokens.push(refreshToken);
             });
 
             document.getElementById("outputText").textContent = output;
+            document.getElementById("refreshTokensOutput").textContent = refreshTokens.join("\n");
         }
 
-        function copyToClipboard() {
+        function copyOutput() {
             const outputText = document.getElementById("outputText").textContent;
             navigator.clipboard.writeText(outputText).then(() => {
-                alert("結果已複製到剪貼簿！");
+                alert("輸出結果已複製到剪貼簿！");
+            }).catch(err => {
+                alert("複製失敗，請手動複製。");
+                console.error("複製錯誤: ", err);
+            });
+        }
+
+        function copyRefreshTokens() {
+            const refreshTokensText = document.getElementById("refreshTokensOutput").textContent;
+            navigator.clipboard.writeText(refreshTokensText).then(() => {
+                alert("所有 Refresh Tokens 已複製到剪貼簿！");
             }).catch(err => {
                 alert("複製失敗，請手動複製。");
                 console.error("複製錯誤: ", err);
